@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#111827">
+  <title>NEXT STEP · HCA Bachillerato</title>
+  <meta name="description" content="Taller interactivo: armá un CV, practicá una entrevista laboral y llevate una guía de recursos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Ir al contenido</a>
+
+<!-- ===================== CABECERA ===================== -->
+<header class="top" id="top">
+  <button class="brand" id="brandTitle" onclick="go('home')" aria-label="Ir al inicio">NEXT <span>STEP</span></button>
+  <nav class="nav" aria-label="Secciones del taller">
+    <button class="navbtn" data-nav="home" onclick="go('home')">Inicio</button>
+    <button class="navbtn" data-nav="cv" onclick="go('cv')">1 · Armá tu CV</button>
+    <button class="navbtn" data-nav="interview" onclick="goInterview()">2 · Entrevista</button>
+    <button class="navbtn" data-nav="resources" onclick="go('resources')">3 · Recursos</button>
+    <button class="navbtn" data-nav="dashboard" onclick="go('dashboard')">Tablero</button>
+  </nav>
+  <button class="iconbtn" data-nav="editor" onclick="go('editor')" title="Modo RRHH (facilitadoras)" aria-label="Modo RRHH">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7zm7.4-2.5a7.9 7.9 0 0 0 .1-1l2-1.6-2-3.4-2.4 1a7.7 7.7 0 0 0-1.7-1L15 4H9l-.4 2.5a7.7 7.7 0 0 0-1.7 1l-2.4-1-2 3.4L4.5 12a7.9 7.9 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.7 7.7 0 0 0 1.7 1L9 20h6l.4-2.5a7.7 7.7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.6z" fill="currentColor"/></svg>
+    <span class="iconlabel">Modo RRHH</span>
+  </button>
+</header>
+
+<main id="main">
+
+<!-- ===================== INICIO ===================== -->
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">HCA Bachillerato · Taller interactivo</div>
+      <h1>Tu historia laboral <em>comienza acá.</em></h1>
+      <p class="lead">Un juego en tres niveles para aprender, en equipo, cómo se arma un CV, qué pasa en una entrevista de trabajo y por qué cada decisión cuenta. No hay respuestas perfectas: hay decisiones para conversar.</p>
+      <div class="row">
+        <button class="btn primary lg" onclick="go('cv')">Comenzar · Nivel 1 →</button>
+        <button class="btn lg" onclick="go('how')">¿Cómo funciona?</button>
+      </div>
+      <label class="teamfield">
+        <span>Nombre del equipo</span>
+        <input id="teamName" placeholder="Ej.: Los Aromos" maxlength="40" autocomplete="off">
+      </label>
+    </div>
+    <div class="panel hero-card">
+      <img id="homeLogo" class="logo" alt="Logo HCA Bachillerato">
+      <h2 id="homeTitle">NEXT STEP</h2>
+      <p id="homeSubtitle" class="muted">Del CV a tu primera entrevista laboral</p>
+      <div class="row center">
+        <span class="tag">Decisiones grupales</span><span class="tag">Sin respuestas únicas</span><span class="tag">Contenido editable</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Tu recorrido</h2>
+  <div class="steps">
+    <button class="step" onclick="go('cv')">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Armá tu CV</h3>
+        <p>Elegí entre dos versiones de cada bloque y ordenalos. Después compará con la mirada de RRHH y sumá puntos.</p>
+        <div class="step-meta"><span class="tag">≈ 25 min</span><span id="stepCvStatus" class="status"></span></div>
+      </div>
+    </button>
+    <button class="step" onclick="goInterview()">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Entrevista simulada</h3>
+        <p>Acompañá a María escena por escena. Cada respuesta suma puntos y abre una conversación.</p>
+        <div class="step-meta"><span class="tag">≈ 30 min</span><span id="stepIntStatus" class="status"></span></div>
+      </div>
+    </button>
+    <button class="step" onclick="go('resources')">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Tus recursos</h3>
+        <p>Guías cortas y una checklist para volver cuando tengas una entrevista de verdad.</p>
+        <div class="step-meta"><span class="tag">Para llevar</span></div>
+      </div>
+    </button>
+    <button class="step step-final" onclick="go('dashboard')">
+      <div class="step-num">🏁</div>
+      <div class="step-body">
+        <h3>Tablero final</h3>
+        <p>Puntajes, aciertos y errores del equipo, todo en una pantalla para la puesta en común.</p>
+        <div class="step-meta"><span id="stepDashStatus" class="status"></span></div>
+      </div>
+    </button>
+  </div>
+
+  <div id="how" class="grid2 howgrid">
+    <div class="panel">
+      <div class="eyebrow">¿Cómo funciona?</div>
+      <ol class="howlist">
+        <li><b>Trabajen en equipo.</b> Cada decisión se conversa y se vota. No hay que apurarse.</li>
+        <li><b>Primero decidan, después revisen.</b> La devolución de RRHH aparece solo cuando ustedes la piden.</li>
+        <li><b>Anoten dudas.</b> Las van a usar en la puesta en común con las facilitadoras.</li>
+        <li><b>Llévense los recursos.</b> La guía se puede imprimir o guardar como PDF.</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">¿Qué vamos a aprender?</div>
+      <ul class="goals">
+        <li>Distinguir información <b>relevante</b> de información <b>innecesaria</b> en un CV.</li>
+        <li>Describir experiencias con <b>hechos concretos</b> y no con adjetivos.</li>
+        <li>Reconocer qué transmite cada respuesta en una <b>entrevista</b>.</li>
+        <li>Preparar <b>preguntas propias</b>: la entrevista también es para vos.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NIVEL 1 · CV ===================== -->
+<section id="cv" class="screen">
+  <div class="screen-head">
+    <div>
+      <div class="eyebrow">Nivel 1 · Armá tu CV</div>
+      <h1>Construí el currículum</h1>
+    </div>
+    <div class="segmented" role="tablist" aria-label="Perfil">
+      <button id="pmaria" role="tab" onclick="setProfile('maria')">María · Primer empleo</button>
+      <button id="pjuan" role="tab" onclick="setProfile('juan')">Juan · Con experiencia</button>
+    </div>
+  </div>
+  <p id="profileDescription" class="lead small"></p>
+
+  <div class="notice">
+    <b>¿Cómo se juega?</b> En cada bloque hay dos versiones, <b>A</b> y <b>B</b>. Elijan la que les parezca mejor para este perfil, o decidan dejar el bloque fuera. Después ordenen el CV. Cuando el equipo esté conforme, pidan la revisión de RRHH: cada coincidencia suma puntos.
+  </div>
+
+  <div class="cvbar">
+    <div class="cvbar-progress">
+      <div class="bar"><div id="cvProgress"></div></div>
+      <span id="cvCount" class="small muted"></span>
+    </div>
+    <div class="segmented mobile-only" aria-label="Vista">
+      <button id="viewBlocks" class="active" onclick="cvView('blocks')">Bloques</button>
+      <button id="viewPreview" onclick="cvView('preview')">Vista del CV</button>
+    </div>
+  </div>
+
+  <div class="cvgrid" id="cvgrid" data-view="blocks">
+    <div class="cvblocks">
+      <h2>Bloques disponibles</h2>
+      <div id="categories"></div>
+    </div>
+    <div class="cvpreview">
+      <div class="row between">
+        <h2>Vista previa del CV</h2>
+        <div class="row">
+          <button class="btn accent" onclick="revealCV()">Revisar con RRHH</button>
+          <button class="btn ghost" onclick="resetCV()">Reiniciar</button>
+        </div>
+      </div>
+      <div id="cvpaper" class="cvpaper"></div>
+      <div id="cvReview" class="panel review-panel hidden"></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn primary" onclick="goInterview()">Continuar a la entrevista →</button>
+        <button class="btn ghost" onclick="window.print()">Imprimir CV</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NIVEL 2 · ENTREVISTA ===================== -->
+<section id="interview" class="screen">
+  <div class="scenecontent">
+    <div class="screen-head">
+      <div>
+        <div class="eyebrow">Nivel 2 · Entrevista simulada</div>
+        <h2 id="sceneTitle"></h2>
+      </div>
+      <span id="sceneCounter" class="tag"></span>
+    </div>
+    <div class="dots" id="sceneDots" aria-hidden="true"></div>
+    <div class="sceneart">
+      <img id="sceneIllustration" alt="Ilustración: María en una entrevista con una persona de RRHH">
+      <div class="speech"><span id="speaker" class="eyebrow"></span></div>
+    </div>
+    <div class="panel scene-panel">
+      <h2 id="question" class="question"></h2>
+      <div id="answers" class="answers"></div>
+      <div id="sceneFeedback" class="scene-feedback hidden"></div>
+      <div class="row between scene-actions">
+        <button class="btn ghost" onclick="previousScene()" id="prevScene">← Anterior</button>
+        <div class="row">
+          <button class="btn accent hidden" id="revealScene" onclick="revealScene()">Ver devolución de RRHH</button>
+          <button id="nextScene" class="btn primary" onclick="nextScene()">Siguiente →</button>
+        </div>
+      </div>
+      <p class="small muted keyhint">Atajo: teclas <kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd> para elegir, <kbd>Enter</kbd> para avanzar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESULTADOS ===================== -->
+<section id="results" class="screen">
+  <div class="scenecontent">
+    <div class="panel result-card">
+      <div class="eyebrow">Entrevista finalizada</div>
+      <h1 id="resultTitle">¡Entrevista completada!</h1>
+      <div class="result-level">
+        <div class="gauge"><div id="gaugeFill"></div></div>
+        <h2 id="resultLevel"></h2>
+        <p id="resultText" class="muted"></p>
+      </div>
+      <div class="result-stats" id="resultStats"></div>
+      <p class="small muted">Este resultado es una herramienta de reflexión didáctica, no una evaluación profesional. Lo importante es la conversación que sigue.</p>
+      <div class="row">
+        <button class="btn primary" onclick="go('dashboard')">Ver el tablero final 🏁</button>
+        <button class="btn accent" onclick="toggleReview()">Revisar respuesta por respuesta</button>
+        <button class="btn" onclick="go('resources')">Ir a los recursos</button>
+        <button class="btn ghost" onclick="startInterview(true)">Reiniciar entrevista</button>
+        <button class="btn ghost" onclick="window.print()">Imprimir resumen</button>
+      </div>
+    </div>
+    <div id="review" class="hidden">
+      <h2>Revisión guiada por RRHH</h2>
+      <p class="muted legend">
+        <span class="chip good">Más adecuada</span>
+        <span class="chip mid">Depende del contexto</span>
+        <span class="chip bad">Menos adecuada</span>
+        <span class="small">· El contorno marca la elección del grupo.</span>
+      </p>
+      <div id="reviewList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TABLERO FINAL ===================== -->
+<section id="dashboard" class="screen">
+  <div class="screen-head">
+    <div>
+      <div class="eyebrow">Tablero final</div>
+      <h1 id="dashTitle">Así le fue al equipo</h1>
+      <p class="lead small">Un resumen de puntajes y de lo que conviene repasar. Úsenlo para la puesta en común.</p>
+    </div>
+    <div class="row">
+      <button class="btn ghost" onclick="window.print()">Imprimir tablero</button>
+      <button class="btn danger" onclick="resetSessionFromDash()">Empezar de nuevo</button>
+    </div>
+  </div>
+  <div id="dashKpis" class="kpis"></div>
+  <div class="grid2 dashgrid">
+    <div class="panel" id="dashCV"></div>
+    <div class="panel" id="dashInterview"></div>
+  </div>
+  <div class="panel" id="dashNext" style="margin-top:18px"></div>
+</section>
+
+<!-- ===================== NIVEL 3 · RECURSOS ===================== -->
+<section id="resources" class="screen">
+  <div class="screen-head">
+    <div>
+      <div class="eyebrow">Nivel 3 · Guía para llevarte</div>
+      <h1>Tus recursos</h1>
+      <p class="lead small">Consejos y herramientas para cuando prepares tu CV o una entrevista de verdad.</p>
+    </div>
+    <img id="resourcesLogo" class="logo logo-sm" alt="Logo HCA Bachillerato">
+  </div>
+  <div class="toolbar">
+    <div class="chips" id="resourceFilters"></div>
+    <input id="resourceSearch" class="search" type="search" placeholder="Buscar en los recursos…" aria-label="Buscar recursos">
+  </div>
+  <div id="resourcesList" class="resourcegrid"></div>
+  <div class="panel" style="margin-top:20px">
+    <h2>Para volver cuando lo necesites</h2>
+    <p class="muted">Esta guía acompaña la experiencia del taller. Podés imprimirla, guardarla como PDF o acceder a la versión publicada por el Colegio.</p>
+    <button class="btn" onclick="window.print()">Imprimir o guardar como PDF</button>
+  </div>
+</section>
+
+<!-- ===================== MODO RRHH (EDITOR) ===================== -->
+<section id="editor" class="screen">
+  <div class="screen-head">
+    <div>
+      <div class="eyebrow">Panel de facilitadoras</div>
+      <h1>Modo RRHH</h1>
+    </div>
+    <button class="btn primary" onclick="save(); go('home')">Guardar y salir</button>
+  </div>
+  <div class="notice">
+    Todo lo que editás acá se guarda <b>en este navegador</b>. Para compartir cambios con el equipo o publicarlos, exportá el JSON desde la pestaña <b>Guardar y compartir</b>.
+  </div>
+  <div class="editorgrid">
+    <div class="tabs" id="tabs">
+      <button data-tab="maria" onclick="editorTab('maria')">CV · María</button>
+      <button data-tab="juan" onclick="editorTab('juan')">CV · Juan</button>
+      <button data-tab="scenes" onclick="editorTab('scenes')">Entrevista</button>
+      <button data-tab="resources" onclick="editorTab('resources')">Recursos</button>
+      <button data-tab="settings" onclick="editorTab('settings')">Dinámica</button>
+      <button data-tab="style" onclick="editorTab('style')">Identidad visual</button>
+      <button data-tab="files" onclick="editorTab('files')">Guardar y compartir</button>
+    </div>
+    <div id="editorBody" class="panel"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== NAV INFERIOR (MÓVIL) ===================== -->
+<nav class="bottomnav" aria-label="Navegación principal">
+  <button data-nav="home" onclick="go('home')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg>
+    <span>Inicio</span>
+  </button>
+  <button data-nav="cv" onclick="go('cv')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l5 5v15H6zM13 3v5h5M8 12h8M8 16h8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>
+    <span>CV</span>
+  </button>
+  <button data-nav="interview" onclick="goInterview()">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>
+    <span>Entrevista</span>
+  </button>
+  <button data-nav="resources" onclick="go('resources')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>
+    <span>Recursos</span>
+  </button>
+  <button data-nav="dashboard" onclick="go('dashboard')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    <span>Tablero</span>
+  </button>
+</nav>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
