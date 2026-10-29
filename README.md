@@ -24,6 +24,8 @@ El avance del equipo (CV, respuestas, nombre) se guarda automáticamente en el n
 2. Elegir la rama `main` y la carpeta `/ (root)`. Guardar.
 3. En unos minutos queda disponible en `https://<usuario>.github.io/<repositorio>/`. Compartir ese enlace (o un código QR) con los equipos.
 
+El taller está publicado en **https://martinferreirahca.github.io/RRHH/**. Atención: GitHub Pages distingue mayúsculas en la ruta, así que `/rrhh/` en minúsculas da error 404. Para evitarlo, compartir el enlace tocable o el código QR de `docs/qr-next-step.png` (la página `docs/enlace.html` los muestra juntos, lista para proyectar o imprimir). Si se renombra el repositorio a `rrhh` en minúsculas (Settings → General → Repository name), la dirección pasa a ser `https://martinferreirahca.github.io/rrhh/` y hay que regenerar el QR.
+
 **Opción B · Un solo archivo.** `dist/next-step.html` es la versión autónoma: se puede enviar por correo, Drive o pendrive y abrir con doble clic. Después de editar cualquier archivo, regenerarlo con:
 
 ```bash
